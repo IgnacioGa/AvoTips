@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* GENERAL */
+*{
+  font-family: "Raleway"
+}
+
+/* NAVBAR */
+.navbar-fixer{
+  height: 85px;
+}
+nav{
+  transition: all ease 0.5s;
+}
+#nav-searchbar{
+  transition: all ease 0.5s;
+}
+.nav-searchbar-hidden{
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* HOME */
+.avocado-jumbo {
+    background-image: url('waves.svg');
+    background-size: cover;
+}
+.numbers-svg{
+  max-width: 120px
+}
+.jumbotron {
+    padding: 10em !important;
+}
+
+/* CAROUSEL */
+
+.news-carousel .slick-slide {
+  padding: 5px;
+}
+
+/* AUTOCOMPLETE */
+
+.autocomplete-suggestions {
+    background: #fff;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+    box-shadow: 0 0 10px -5px #fff;
+    padding: 5px;
+}
+.autocomplete-suggestion {
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.autocomplete-suggestion:hover, .autocomplete-selected {
+    background: #eee;
+}
