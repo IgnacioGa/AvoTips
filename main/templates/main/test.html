@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tests</title>
+</head>
+<body>
+	{% for carrera in carreras %}
+		<h2>{{ carrera.titulo }}</h2>
+	{% endfor %}
+
+	{% for uni in universidades %}
+		<h2>{{ uni.abreviacion }}</h2>
+	{% empty %}
+		<h2>empty</h2>
+	{% endfor %}
+</body>
+</html>

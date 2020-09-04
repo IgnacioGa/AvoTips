@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>index</title>
+</head>
+<body>
+
+	<h4>Carreras</h4>
+	{%  for carrera in carreras %}
+		<ul>
+			<li><a href="{% url 'main:carrera' carrera.titulo %}">{{ carrera.titulo }}</a></li>
+		</ul>	
+    {% endfor %}
+
+    <h4>Universidades</h4>
+    {%  for universidad in universidades %}
+		<ul>
+			<li><a href="{% url 'main:universidad' universidad.nombre %}">{{ universidad.nombre }}</a></li>
+		</ul>	
+    {% endfor %}
+
+    <h4>Orientaciones</h4>
+    {%  for orientacion in orientaciones %}
+		<ul>
+			<li><a href="{% url 'main:orientacion' orientacion.orientacion %}">{{ orientacion.orientacion }}</a></li>
+		</ul>	
+    {% endfor %}
+</body>
+</html>
