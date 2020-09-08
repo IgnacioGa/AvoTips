@@ -15,10 +15,11 @@ nav{
 #nav-searchbar{
   transition: all ease 0.5s;
 }
-.nav-searchbar-hidden{
+/* RULE ONLY HOME */
+/* .nav-searchbar-hidden{
   opacity: 0;
   pointer-events: none;
-}
+} */
 
 /* HOME */
 .avocado-jumbo {
@@ -53,4 +54,65 @@ nav{
 }
 .autocomplete-suggestion:hover, .autocomplete-selected {
     background: #eee;
+}
+
+/* STARS */
+.stars, .stars-review {
+  /* --percent: calc(var(--rating) / 5 * 100%); */
+  display: inline-block;
+  /* font-size: var(--star-size); */
+  font-family: Times; // make sure ★ appears correctly
+  line-height: 1;
+}
+  .stars:before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(to right, #ffffffff, #ffffffff 50%, #ffffff00 50%, #ffffff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+.stars-review:before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(to right, #28a745ff, #28a745ff 50%, #ffffff00 50%, #ffffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+
+/* RATING */
+.rating-num { margin-top:0px;font-size: 54px; }
+.progress { margin-bottom: 5px;}
+.progress-bar { text-align: left; }
+.rating-desc .col-md-3 {padding-right: 0px;}
+.sr-only { margin-left: 5px;overflow: visible;clip: auto; }
+
+
+/* CAREER TILES */
+.career-tile {
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px -5px #000;
+    text-align: center;
+    display: flex;
+}
+.career-text{
+
+}
+.career-tile h1 {
+    font-weight: 900;
+}
+.career-tile h2 {
+    font-weight: 100;
+}
+
+
+.uba-tile{
+  background: #ff0000;
+}
+.utdt-tile{
+  background: #f0f000;
 }
