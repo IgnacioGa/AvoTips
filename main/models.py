@@ -6,31 +6,53 @@ class Universidad(models.Model):
 	abreviacion = models.CharField(max_length=4, default="")
 	color = models.CharField(max_length=64)
 	descripcion = models.TextField()
-	carreras = models.ManyToManyField('Carrera', related_name="universidadesSelf", blank=True, null=True)
+	carreras = models.ManyToManyField('Carrera', related_name="universidadesSelf", blank=True)
+	orientaciones = models.ManyToManyField('Orientacion', related_name="unisConOrientaciones", blank=True)
 	video = models.CharField(max_length=255, blank=True, null=True)
 	noticia = models.CharField(max_length=255, blank=True, null=True)
 
+	class Meta:
+		ordering = ['nombre']
+
 	def __str__(self):
-		return f"Universidad = {self.nombre}"
+		return str(self.nombre)
 
 class Carrera(models.Model):
 	titulo = models.CharField(max_length=64)
 	descripcion = models.TextField()
 	universidades = models.ManyToManyField(Universidad, related_name="carrerasSelf")
 	video = models.CharField(max_length=255, blank=True, null=True)
-	relacionadas =  models.ManyToManyField('self', related_name="relacionadas", blank=True, null=True)
+	relacionadas =  models.ManyToManyField('self', related_name="relacionadas", blank=True)
+	orientaciones = models.ManyToManyField('Orientacion', related_name="carreraDeOrientaciones", blank=True)
 	noticia = models.CharField(max_length=255, blank=True, null=True)
 
+	class Meta:
+		ordering = ['titulo']
+
 	def __str__(self):
-		return f"Carrera = {self.titulo}"
+		return str(self.titulo)
+
+class Especifica(models.Model):
+	carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, related_name="especifica")
+	descripcion = models.TextField()
+	universidad = models.ForeignKey(Universidad, on_delete=models.CASCADE, related_name="carreraEspecifica")
+
+	class Meta:
+		ordering = ['carrera']
+
+	def __str__(self):
+		return str(self.carrera)
 
 class Orientacion (models.Model):
 	orientacion = models.CharField(max_length=64)
+	descripcion = models.TextField(blank=True, null=True)
 	carreras = models.ManyToManyField(Carrera, related_name="orientacion")
-	informacion = models.TextField() 
+
+	class Meta:
+		ordering = ['orientacion']
 
 	def __str__(self):
-		return f"{self.orientacion} tiene estas carreras = {self.carreras}"
+		return str(self.orientacion)
 
 class Formulario (models.Model):	
 	PRIMER_AÑO = 1

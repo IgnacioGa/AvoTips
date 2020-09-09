@@ -1,3 +1,5 @@
+{% load tags %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,13 +7,24 @@
 </head>
 <body>
 	{% for carrera in carreras %}
-		<h2>{{ carrera.titulo }}</h2>
+		<h4>{{ carrera.titulo }}</h4>
 	{% endfor %}
 
+	<h2>Universidades donde se dictan</h2>
 	{% for uni in universidades %}
-		<h2>{{ uni.abreviacion }}</h2>
+		<a href="{% url 'main:universidad' uni %}"><h4>{{ uni }}</h4></a>
+		<h3>Su promedio</h3>
+		<h4>{{ forloop.counter0 }}{{ promedioUni}}</h4>
 	{% empty %}
-		<h2>empty</h2>
+		<h4>empty</h4>
 	{% endfor %}
+
+
+	<h2>promedios</h2>
+		<h4>recomendaciones: {{ promedios.0 }}</h4>
+		<h4>profesores: {{ promedios.1 }}</h4>
+		<h4>exigencia: {{ promedios.2 }}</h4>
+		<h4>cargaHorario: {{ promedios.3 }}</h4>
+		<h4>intercambios: {{ promedios.4 }}</h4>
 </body>
 </html>

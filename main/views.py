@@ -1,32 +1,85 @@
 from django.shortcuts import render
 
-from .models import Carrera, Universidad, Orientacion, Formulario
+from .models import Carrera, Universidad, Orientacion, Formulario, Especifica
+
+from django import db
 
 # Create your views here.
+def show_queries():
+    for query in db.connection.queries:
+    	print (query["sql"])
+    db.reset_queries()
+
 def index(request):
 	carrera = Carrera.objects.filter().values("titulo")
 	universidad = Universidad.objects.filter().values("nombre")
 	orientiacion = Orientacion.objects.filter().values("orientacion")
+	especifica = Especifica.objects.filter()
 	return render(request, "main/index.html", {
 		"carreras": carrera,
 		"universidades": universidad,
-		"orientaciones": orientiacion
+		"orientaciones": orientiacion,
+		"especificas" : especifica
 		})
 
 def carrera(request,titulo):
-	uni = Carrera.objects.filter(titulo=titulo).values("universidades")
-	carrera = Carrera.objects.filter(titulo=titulo)
-	reseñas = Formulario.objects.filter(carrera__titulo=titulo)
-	for u in uni:
-		universidades = Universidad.objects.filter(nombre=u)
+	carrera = Carrera.objects.filter(titulo=titulo) 
+
+	# Promedios de la carrera
+	recomendaciones = 0
+	profesores = 0
+	exigencia = 0
+	cargaHorario = 0
+	intercambios = 0
+	contador = 0	
+	car = Carrera.objects.get(titulo=titulo)
+	reseñasCAR = Formulario.objects.filter(carrera=car.id)
+
+	for stast in reseñasCAR:
+		recomendaciones += stast.recomendacion
+		profesores += stast.profesores
+		exigencia += stast.exigencia
+		cargaHorario += stast.cargaHoraria
+		intercambios += stast.progIntercambio
+		contador += 1
+
+	promedioRec = recomendaciones / contador
+	promedioPro = profesores / contador
+	promedioExi = exigencia / contador
+	promedioCHs = cargaHorario / contador
+	promedioInt = intercambios / contador
+	promedios = [promedioRec, promedioPro, promedioExi, promedioCHs, promedioInt]
+
+	# Promedios de las universidades donde esta la carrera
+	recomen = 0
+	contador2 = 0
+	calculo = 0
+	reseñaUNI = []
+	SelectedUniversidades = car.universidades.all()
+	for x in SelectedUniversidades:
+		reseña = Formulario.objects.filter(universidad=x)
+		for y in reseña:
+			recomen += y.recomendacion
+			contador2 += 1
+		calculo = recomen / contador2
+		reseñaUNI.append(calculo)
+		recomen = 0
+		contador2 = 0
+		calculo = 0
+
+
 	return render(request, "main/test.html", {
 		"carreras": carrera,
-		"reseñas": reseñas,
-		"universidades": universidades
+		"universidades": SelectedUniversidades,
+		"promedios": promedios,
+		"promedioUni": reseñaUNI
 		})
 
 def universidad(reques,nombre):
 	pass
 
 def orientacion(reques,orientacion):
+	pass
+
+def especifica(reques,especifica):
 	pass

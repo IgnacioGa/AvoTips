@@ -25,5 +25,12 @@
 			<li><a href="{% url 'main:orientacion' orientacion.orientacion %}">{{ orientacion.orientacion }}</a></li>
 		</ul>	
     {% endfor %}
+
+    <h4>Especificas</h4>
+    {%  for espe in especificas %}
+		<ul>
+			<li><a href="{% url 'main:especifica' espe.id %}">{{ espe.carrera }} en {{ espe.universidad}}</a></li>
+		</ul>	
+    {% endfor %}
 </body>
 </html>
