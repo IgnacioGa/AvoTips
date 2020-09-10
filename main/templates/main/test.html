@@ -14,7 +14,7 @@
 	{% for uni in universidades %}
 		<a href="{% url 'main:universidad' uni %}"><h4>{{ uni }}</h4></a>
 		<h3>Su promedio</h3>
-		<h4>{{ forloop.counter0 }}{{ promedioUni}}</h4>
+		<h4>{{ forloop.counter0 }}{{ promedioUni.forloop.counter0 }}</h4>
 	{% empty %}
 		<h4>empty</h4>
 	{% endfor %}
