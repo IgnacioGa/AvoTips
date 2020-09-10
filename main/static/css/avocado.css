@@ -68,9 +68,13 @@ nav{
   .stars:before {
     content: '★★★★★';
     letter-spacing: 0px;
-    /* background: linear-gradient(to right, #ffffffff, #ffffffff 50%, #ffffff00 50%, #ffffff00); */
-    /* -webkit-background-clip: text !important; */
-    /* -webkit-text-fill-color: transparent !important; */
+    background: linear-gradient(to right,
+      #ffffffff,
+      #ffffffff var(--star-width),
+      #ffffff00 var(--star-width),
+      #ffffff00);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
     transition: all ease 0.5s;
   }
 
@@ -93,12 +97,13 @@ nav{
 
 /* CAREER TILES */
 .career-tile {
-    width: 250px;
-    height: 250px;
+    /* width: 250px;
+    height: 250px; */
     border-radius: 5px;
     box-shadow: 0 0 10px -5px #000;
     text-align: center;
     display: flex;
+    background: var(--tile-color)
 }
 .col a{
   text-decoration: none;
@@ -132,4 +137,14 @@ nav{
 }
 .TODO:hover{
   opacity: 0;
+}
+
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
 }

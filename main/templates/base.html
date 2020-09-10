@@ -9,11 +9,11 @@
   <title>{{ carrera.titulo }}</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{% static "css/slick.css" %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static "css/slick-theme.css" %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static "css/slick.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/slick-theme.css" %}">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="{% static "css/avocado.css" %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static "css/avocado.css" %}">
 
 
 </head>
@@ -30,17 +30,65 @@
       <div class="row">
         <div class="col-md-6 mt-md-0">
           <h5 class="text-center">Footer text 1</h5>
-          </div>
-          <hr class="clearfix w-100 d-md-none pb-3">
-          <div class="col-md-6 mb-md-0">
-            <h5 class="text-center">Footer text 2</h5>
-            </div>
-          </div>
         </div>
-        <div class="footer-copyright text-center py-3" style="background: #00000033">© 2020 Avocados.tips | Todos los derechos reservados.
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-6 mb-md-0">
+          <h5 class="text-center">Footer text 2</h5>
         </div>
+      </div>
+    </div>
+    <div class="footer-copyright text-center py-3" style="background: #00000033">© 2020 Avocados.tips | Todos los derechos reservados.
+    </div>
 
-      </footer>
+  </footer>
 
-    </body>
-    </html>
+  <!-- SCRIPTS -->
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="{% static "js/jquery.autocomplete.js" %}"> </script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"> </script>
+
+  <script type="text/javascript">
+    $(document).on("scroll", function(){
+      if ($(document).scrollTop() > 300){
+        $("nav").removeClass("py-3");
+        $("#nav-searchbar").removeClass("nav-searchbar-hidden");
+      } else {
+        $("nav").addClass("py-3");
+        $("#nav-searchbar").addClass("nav-searchbar-hidden");
+      }
+    });
+    $('.career-tile').matchHeight();
+  </script>
+
+  <script type="text/javascript">
+    var suggestions = [
+    { value: 'Administración', data: 'AD' },
+    // ...
+    { value: 'Psicología', data: 'ZZ' }
+    ];
+
+    $('#search-autocomplete').autocomplete({
+      lookup: suggestions,
+      onSelect: function (suggestion) {
+        console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+      }
+    });
+    $('#jumbo-search-autocomplete').autocomplete({
+      lookup: suggestions,
+      onSelect: function (suggestion) {
+        console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+      }
+    });
+
+  </script>
+
+</body>
+</html>
