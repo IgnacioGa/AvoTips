@@ -23,7 +23,7 @@ nav{
 
 /* HOME */
 .avocado-jumbo {
-    background-image: url('waves.svg');
+    background-image: url('../img/waves.svg');
     background-size: cover;
 }
 .numbers-svg{
@@ -63,13 +63,15 @@ nav{
   /* font-size: var(--star-size); */
   font-family: Times; // make sure ★ appears correctly
   line-height: 1;
+  width: fit-content !important;
 }
   .stars:before {
     content: '★★★★★';
-    letter-spacing: 3px;
-    background: linear-gradient(to right, #ffffffff, #ffffffff 50%, #ffffff00 50%, #ffffff00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: 0px;
+    /* background: linear-gradient(to right, #ffffffff, #ffffffff 50%, #ffffff00 50%, #ffffff00); */
+    /* -webkit-background-clip: text !important; */
+    /* -webkit-text-fill-color: transparent !important; */
+    transition: all ease 0.5s;
   }
 
 .stars-review:before {
@@ -87,7 +89,6 @@ nav{
 .progress { margin-bottom: 5px;}
 .progress-bar { text-align: left; }
 .rating-desc .col-md-3 {padding-right: 0px;}
-.sr-only { margin-left: 5px;overflow: visible;clip: auto; }
 
 
 /* CAREER TILES */
@@ -98,6 +99,10 @@ nav{
     box-shadow: 0 0 10px -5px #000;
     text-align: center;
     display: flex;
+}
+.col a{
+  text-decoration: none;
+  color: inherit;
 }
 .career-text{
 
@@ -115,4 +120,16 @@ nav{
 }
 .utdt-tile{
   background: #f0f000;
+}
+
+.TODO{
+  position: absolute;
+  width: 200px;
+  /* height: 200px; */
+  background: #f40000;
+  opacity: .8;
+  z-index: 99;
+}
+.TODO:hover{
+  opacity: 0;
 }

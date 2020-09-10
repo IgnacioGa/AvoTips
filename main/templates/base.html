@@ -3,26 +3,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>{{ carrera.titulo }}</title>
+  <title>{{ carrera.titulo }}</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static "css/slick.css" %}"/>
   <link rel="stylesheet" type="text/css" href="{% static "css/slick-theme.css" %}"/>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="{% static "css/avocado.css" %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static "css/avocado.css" %}"/>
 
 
 </head>
 <body>
 
-{% include 'snippets/navbar.html' %}
+  {% include 'snippets/navbar.html' %}
 
-{% block content %}
+  {% block content %}
 
-{% endblock content %}
+  {% endblock content %}
 
-</body>
+  <footer class="page-footer font-small bg-success pt-1">
+    <div class="container text-center text-md-left">
+      <div class="row">
+        <div class="col-md-6 mt-md-0">
+          <h5 class="text-center">Footer text 1</h5>
+          </div>
+          <hr class="clearfix w-100 d-md-none pb-3">
+          <div class="col-md-6 mb-md-0">
+            <h5 class="text-center">Footer text 2</h5>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright text-center py-3" style="background: #00000033">© 2020 Avocados.tips | Todos los derechos reservados.
+        </div>
+
+      </footer>
+
+    </body>
+    </html>
