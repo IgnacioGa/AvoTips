@@ -1,0 +1,28 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3 fixed-top">
+  <div class="container">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand mr-auto w-25" href="#">
+        <img src="{% static "img/avocado.svg" %}" class="w-75 block" alt="">
+      </a>
+
+      <form class="form-inline my-2 my-lg-0 ml-auto mr-auto w-50 mdb-autocomplete nav-searchbar-hidden" id="nav-searchbar">
+        <input id="search-autocomplete" class="form-control w-75" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 w-25" type="submit">Buscar</button>
+      </form>
+
+      <button class="btn btn-success my-2 my-sm-0 ml-auto" type="submit">Compartí tu experiencia</button>
+    </div>
+
+  </div>
+</nav>
+
+<div class="navbar-fixer">
+  &nbsp;
+</div>

@@ -23,7 +23,7 @@ def index(request):
 		})
 
 def carrera(request,titulo):
-	carrera = Carrera.objects.filter(titulo=titulo) 
+	carrera = Carrera.objects.get(titulo=titulo)
 
 	# Promedios de la carrera
 	recomendaciones = 0
@@ -31,16 +31,16 @@ def carrera(request,titulo):
 	exigencia = 0
 	cargaHorario = 0
 	intercambios = 0
-	contador = 0	
+	contador = 0
 	car = Carrera.objects.get(titulo=titulo)
 	reseñasCAR = Formulario.objects.filter(carrera=car.id)
 
-	for stast in reseñasCAR:
-		recomendaciones += stast.recomendacion
-		profesores += stast.profesores
-		exigencia += stast.exigencia
-		cargaHorario += stast.cargaHoraria
-		intercambios += stast.progIntercambio
+	for stats in reseñasCAR:
+		recomendaciones += stats.recomendacion
+		profesores += stats.profesores
+		exigencia += stats.exigencia
+		cargaHorario += stats.cargaHoraria
+		intercambios += stats.progIntercambio
 		contador += 1
 
 	promedioRec = recomendaciones / contador
@@ -68,8 +68,8 @@ def carrera(request,titulo):
 		calculo = 0
 
 
-	return render(request, "main/test.html", {
-		"carreras": carrera,
+	return render(request, "main/career.html", {
+		"carrera": carrera,
 		"universidades": SelectedUniversidades,
 		"promedios": promedios,
 		"promedioUni": reseñaUNI
