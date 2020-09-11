@@ -72,7 +72,7 @@ def carrera(request,titulo):
         "universidades": SelectedUniversidades,
         "promedios": promedios,
         "promedioUni": resenaUNI,
-        "relacionadas": relacionadas,
+        "relacionadas": relacionadas
         })
 
 def universidad(reques,nombre):

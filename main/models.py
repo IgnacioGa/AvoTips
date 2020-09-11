@@ -54,9 +54,9 @@ class Orientacion (models.Model):
 	def __str__(self):
 		return str(self.orientacion)
 
-class Formulario (models.Model):	
+class Formulario (models.Model):
 	PRIMER_AÑO = 1
-	SEGUNDO_AÑO = 2   
+	SEGUNDO_AÑO = 2
 	TERCER_AÑO = 3
 	CUARTO_AÑO = 4
 	QUINTO_AÑO = 5
