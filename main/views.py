@@ -71,6 +71,7 @@ def carrera(request,titulo):
 		"relacionadas": relacionadas
 		})
 
+
 def universidad(request,nombre):
     pass
 
