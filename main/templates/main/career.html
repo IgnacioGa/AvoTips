@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% load tags %}
+{% load static %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid bg-success text-white avocado-jumbo" >
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-6 my-auto">
+				<div class="row">
+					<!-- <div class="col-4 my-auto">
+					<img src="https://via.placeholder.com/300" alt="" style="width:100%">
+				</div> -->
+				<div class="col-12 text-left">
+					<h1>{{ carrera.titulo }}</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+
+			<div class="well well-sm">
+				<div class="row">
+					<div class="col-xs-12 col-md-3 text-center my-auto">
+						<h1 class="rating-num">
+							{{promedios.0}}
+						</h1>
+						<div class="rating">
+
+
+							<div class="stars" style="--star-width: {% widthratio promedios.recomendacion__avg 5 100 %}%;"></div>
+
+						</div>
+						<div>
+
+							<span class="TODO">
+								SUMAR EL COUNTER DE LAS REVIEWS
+							</span>
+
+							<i class="fa fa-user"></i> {{ promedios.recomendacion__count }} reviews
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-9">
+						<div class="row rating-desc">
+							<div class="col-xs-3 col-md-3 text-center">
+								<p class="my-auto">
+									Calidad de Profesores
+								</p>
+							</div>
+							<div class="col-xs-8 col-md-9 my-auto">
+								<div class="progress progress-striped">
+									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+									aria-valuemin="0" aria-valuemax="100" style="width: {% widthratio promedios.profesores__avg 5 100 %}%">
+								</div>
+							</div>
+						</div>
+						<!-- end 5 -->
+						<div class="col-xs-3 col-md-3 text-center">
+							<p class="my-auto">
+								Exigencia Académica
+							</p>
+						</div>
+						<div class="col-xs-8 col-md-9 my-auto">
+							<div class="progress">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+								aria-valuemin="0" aria-valuemax="100" style="width: {% widthratio promedios.exigencia__avg 5 100 %}%">
+							</div>
+						</div>
+					</div>
+					<!-- end 4 -->
+					<div class="col-xs-3 col-md-3 text-center">
+						<p class="my-auto">
+							Carga Horaria
+						</p>
+					</div>
+					<div class="col-xs-8 col-md-9 my-auto">
+						<div class="progress">
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+							aria-valuemin="0" aria-valuemax="100" style="width: {% widthratio promedios.cargaHoraria__avg 5 100 %}%">
+						</div>
+					</div>
+				</div>
+				<!-- end 3 -->
+				<div class="col-xs-3 col-md-3 text-center">
+					<p class="my-auto">
+						Intercambios
+					</p>
+				</div>
+				<div class="col-xs-8 col-md-9 my-auto">
+					<div class="progress">
+						<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+						aria-valuemin="0" aria-valuemax="100" style="width: {% widthratio promedios.progIntercambio__avg 5 100 %}%">
+					</div>
+				</div>
+			</div>
+			<!-- end 2 -->
+		</div>
+		<!-- end row -->
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="bg-white pt-5 pb-5">
+	<!-- <h1 class="display-4 text-center">Experiencias compartidas</h1> -->
+	<div class="container">
+		<p>
+			{{carrera.descripcion}}
+		</p>
+	</div>
+</div>
+
+
+<div class="bg-info pt-5 pb-5">
+	<h1 class="display-4 text-center text-white pb-3">Universidades que dictan esta carrera</h1>
+
+	<div class="container">
+		<div class="row is-flex">
+
+			<div class="TODO">
+				SUMAR STARS PARA CADA UNI
+			</div>
+
+			{% for uni in universidades %}
+
+			<div class="col d-flex flex-column justify-content-center align-items-center">
+				<a href="{% url 'main:universidad' uni %}">
+					<div class="career-tile" style="--tile-color:#{{ uni.universidad.color }}">
+						<div class="career-text my-auto mx-auto">
+							<h1>{{ uni.universidad.abreviacion }}</h1>
+							<h2>{{ carrera.titulo }}</h2>
+						</div>
+					</div>
+				</a>
+				<div class="stars w-100 text-center" style="--star-width: {% widthratio uni.stats.recomendacion__avg 5 100 %}%;"></div>
+			</div>
+
+			{% endfor %}
+
+		</div>
+
+		<div class="container text-center pt-5">
+			<button class="btn btn-success active">
+				Global
+			</button>
+			<button class="btn btn-success ">
+				Calidad de Profesores
+			</button>
+			<button class="btn btn-success ">
+				Carga horaria
+			</button>
+			<button class="btn btn-success ">
+				Exigencia
+			</button>
+			<button class="btn btn-success ">
+				Intercambios
+			</button>
+		</div>
+	</div>
+
+</div>
+
+{% include 'snippets/whatsapp.html' %}
+
+<!-- VIDEO -->
+
+<div class="bg-secondary pt-5 pb-5">
+	<h1 class="display-4 text-center text-white">Mirá un video sobre la carrera</h1>
+	<div class="career-video text-center embed-responsive embed-responsive-16by9 container">
+		<iframe src="https://www.youtube.com/embed/UKKTMBo2yvQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+</div>
+
+
+<div class="bg-info pt-5 pb-5">
+	<h1 class="display-4 text-center text-white pb-3">Otras carreras que pueden interesarte</h1>
+
+	<div class="container">
+		<div class="row">
+
+			{% for rel in relacionadas %}
+
+			<div class="col d-flex flex-column justify-content-center align-items-center">
+				<a href="{% url 'main:carrera' rel %}">
+					<div class="career-tile">
+						<div class="career-text my-auto mx-auto">
+							<!-- <h1>{{ uni }}</h1> -->
+							<h2>{{ rel.titulo }}</h2>
+						</div>
+					</div>
+				</a>
+
+			</div>
+
+			{% endfor %}
+
+		</div>
+
+
+	</div>
+
+</div>
+
+
+</body>
+</html>
+
+{% endblock content %}

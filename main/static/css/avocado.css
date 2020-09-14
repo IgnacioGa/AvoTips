@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* GENERAL */
+*{
+  font-family: "Raleway"
+}
+
+/* NAVBAR */
+.navbar-fixer{
+  height: 85px;
+}
+nav{
+  transition: all ease 0.5s;
+}
+#nav-searchbar{
+  transition: all ease 0.5s;
+}
+/* RULE ONLY HOME */
+/* .nav-searchbar-hidden{
+  opacity: 0;
+  pointer-events: none;
+} */
+
+/* HOME */
+.avocado-jumbo {
+    background-image: url('../img/waves.svg');
+    background-size: cover;
+}
+.numbers-svg{
+  max-width: 120px
+}
+.jumbotron {
+    padding: 10em !important;
+}
+
+/* CAROUSEL */
+
+.news-carousel .slick-slide {
+  padding: 5px;
+}
+
+/* AUTOCOMPLETE */
+
+.autocomplete-suggestions {
+    background: #fff;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+    box-shadow: 0 0 10px -5px #fff;
+    padding: 5px;
+}
+.autocomplete-suggestion {
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.autocomplete-suggestion:hover, .autocomplete-selected {
+    background: #eee;
+}
+
+/* STARS */
+.stars, .stars-review {
+  /* --percent: calc(var(--rating) / 5 * 100%); */
+  display: inline-block;
+  /* font-size: var(--star-size); */
+  font-family: Times; // make sure ★ appears correctly
+  line-height: 1;
+  width: fit-content !important;
+}
+  .stars:before {
+    content: '★★★★★';
+    letter-spacing: 0px;
+    background: linear-gradient(to right,
+      #ffffffff,
+      #ffffffff var(--star-width),
+      #ffffff00 var(--star-width),
+      #ffffff00);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    transition: all ease 0.5s;
+  }
+
+.stars-review:before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(to right, #28a745ff, #28a745ff 50%, #ffffff00 50%, #ffffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+
+/* RATING */
+.rating-num { margin-top:0px;font-size: 54px; }
+.progress { margin-bottom: 5px;}
+.progress-bar { text-align: left; }
+.rating-desc .col-md-3 {padding-right: 0px;}
+
+
+/* CAREER TILES */
+.career-tile {
+    /* width: 250px;
+    height: 250px; */
+    border-radius: 5px;
+    box-shadow: 0 0 10px -5px #000;
+    text-align: center;
+    display: flex;
+    background: var(--tile-color)
+}
+.col a{
+  text-decoration: none;
+  color: inherit;
+}
+.career-text{
+
+}
+.career-tile h1 {
+    font-weight: 900;
+}
+.career-tile h2 {
+    font-weight: 100;
+}
+
+
+.uba-tile{
+  background: #ff0000;
+}
+.utdt-tile{
+  background: #f0f000;
+}
+
+.TODO{
+  position: absolute;
+  width: 200px;
+  /* height: 200px; */
+  background: #f40000;
+  opacity: .8;
+  z-index: 99;
+}
+.TODO:hover{
+  opacity: 0;
+}
+
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}

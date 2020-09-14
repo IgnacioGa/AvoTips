@@ -8,7 +8,7 @@ class UniversidadAdmin(admin.ModelAdmin):
 
 # Register your models here.
 class CarrerasAdmin(admin.ModelAdmin):
-    filter_horizontal = ('universidades', 'relacionadas', 'orientaciones',)    
+    filter_horizontal = ('relacionadas',)    
 
 class OrientiacionAdmin(admin.ModelAdmin):
 	filter_horizontal = ("carreras",)

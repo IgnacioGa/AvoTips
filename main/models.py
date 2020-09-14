@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Universidad(models.Model):
 	nombre = models.CharField(max_length=64)
-	abreviacion = models.CharField(max_length=4, default="")
+	abreviacion = models.CharField(max_length=8, default="")
 	color = models.CharField(max_length=64)
 	descripcion = models.TextField()
 	carreras = models.ManyToManyField('Carrera', related_name="universidadesSelf", blank=True)
@@ -20,10 +20,8 @@ class Universidad(models.Model):
 class Carrera(models.Model):
 	titulo = models.CharField(max_length=64)
 	descripcion = models.TextField()
-	universidades = models.ManyToManyField(Universidad, related_name="carrerasSelf")
 	video = models.CharField(max_length=255, blank=True, null=True)
 	relacionadas =  models.ManyToManyField('self', related_name="relacionadas", blank=True)
-	orientaciones = models.ManyToManyField('Orientacion', related_name="carreraDeOrientaciones", blank=True)
 	noticia = models.CharField(max_length=255, blank=True, null=True)
 
 	class Meta:
