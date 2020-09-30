@@ -2,77 +2,105 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title>tests</title>
-	<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-</head>
-<body>
-	<h1>{{ carrera.titulo }}</h1>
-	<h2>Promedio carrera</h2>
-	<h4>{{ promedios.recomendacion__avg }}</h4>
-	<h4>{{ promedios.profesores__avg }}</h4>
-	<h4>{{ promedios.exigencia__avg }}</h4>
-	<h4>{{ promedios.cargaHoraria__avg }}</h4>
-	<h4>{{ promedios.progIntercambio__avg }}</h4>
-	<h3>Nro reviews</h3>
-	<h4>{{ promedios.recomendacion__count }}</h4>
+  <head>
+    <title>tests</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>{{ carrera.titulo }}</h1>
+    <h2>Promedio carrera</h2>
+    <h4>{{ promedios.recomendacion__avg }}</h4>
+    <h4>{{ promedios.profesores__avg }}</h4>
+    <h4>{{ promedios.exigencia__avg }}</h4>
+    <h4>{{ promedios.cargaHoraria__avg }}</h4>
+    <h4>{{ promedios.progIntercambio__avg }}</h4>
+    <h3>Nro reviews</h3>
+    <h4>{{ promedios.recomendacion__count }}</h4>
 
+    <h2>Universidades donde se dictan</h2>
+    <div id="posts">
+      {% for i in context.first_page %}
+      <h2>{{i.universidad.0.fields.nombre}}</h2>
+      <h4>{{ i.stats.recomendacion__avg }}</h4>
+      <h4>{{ i.stats.profesores__avg }}</h4>
+      <h4>{{ i.stats.exigencia__avg }}</h4>
+      <h4>{{ i.stats.cargaHoraria__avg }}</h4>
+      <h4>{{ i.stats.progIntercambio__avg }}</h4>
+      {% endfor %}
+    </div>
+    <!-- loop pagination -->
+    {% for i in context.page_range %}
+    <a id="paginator" style="margin-left: 5px; font-size: 20px" href="{{i}}"
+      >{{i}}</a
+    >
+    {% endfor %}
 
+    <div class="comments">
+      <h1>Comentarios de esta carrera</h1>
+      {% for comment in comentarios %} {% if comment.titulo %}
+      <h4>{{ comment.titulo }} (comentario hecho por {{ comment.usuario }})</h4>
+      <p>{{ comment.comentario }}</p>
+      {% endif %} {% endfor %}
+    </div>
 
-	<h2>Universidades donde se dictan</h2>
-	{% for uni in universidades %}
-		<a href="{% url 'main:universidad' uni %}"><h4>{{ uni.universidad.nombre }}</h4></a>
-		<h3>Su promedio</h3>
-		{% if uni.stats == None %}
-			<h4>0<h4>
-		{% else %}
-			<h4>{{ uni.stats.recomendacion__avg }}</h4>
-			<h4>{{ uni.stats.profesores__avg }}</h4>
-			<h4>{{ uni.stats.exigencia__avg }}</h4>
-			<h4>{{ uni.stats.cargaHoraria__avg }}</h4>
-			<h4>{{ uni.stats.progIntercambio__avg }}</h4>
-		{% endif %}
-		<h3>Nro reviews</h3>
-		<h4>{{ uni.stats.recomendacion__count }}</h4>
-	{% endfor %}
+    <div class="form">
+      <h1>Deja tu reseña</h1>
+      <form method="post" action="{% url 'main:saveReseña' carrera.titulo %}">
+        {% csrf_token %}
+        <ul>
+          {% for field in form %}
+          <li>{{ field.label_tag }} {{ field }}</li>
+          {% endfor %}
+        </ul>
 
-	<div id="posts">
-    	{% for i in context.first_page %}
-    		<h2>{{i.nombre}}</h2>
-    	{% endfor %}
-	</div>
-	<!-- loop pagination -->
-	{% for i in context.page_range %}
-		<a style="margin-left: 5px; font-size: 20px;" href="{{i}}">{{i}}</a>
-	{% endfor %}
+        <input type="submit" value="Guardar Reseña" />
+      </form>
+    </div>
 
-	<script>
-	$('a').click(function(event){
-    	event.preventDefault();
-    	var page_n = $(this).attr('href');
-    	// ajax
-       		$.ajax({
-                	type: "POST",
-                	url: "{% url 'main:carrera' carrera.titulo %}", // name of url
-                	data : {    
-                	page_n : page_n, //page_number
-                	csrfmiddlewaretoken: '{{ csrf_token }}',
-            	},
-            	success: function (resp) {
-                	//loop
-                	$('#posts').html('')
-               	$.each(resp.results, function(i, val) {
-                 	//apending posts
-                $('#posts').append('<h2>' + val.nombre + '</h2>')
-               	});
-            },
-            error: function () {}
-        }); // 
+    <script type="text/javascript">
+      // Paginator
+      $("a").click(function (event) {
+        event.preventDefault();
+        var page_n = $(this).attr("href");
+        // ajax
+        $.ajax({
+          type: "POST",
+          url: "{% url 'main:carrera' carrera.titulo %}", // name of url
+          data: {
+            page_n: page_n, //page_number
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+          },
+          success: function (resp) {
+            //loop
 
-});    
-</script>
-</body>
+            $("#posts").html("");
+            $.each(resp.results, function (i, val) {
+              console.log(val.universidad[0].fields.nombre);
+              //apending posts
+              $("#posts").append(
+                "<h2>" +
+                  val.universidad[0].fields.nombre +
+                  "</h2><h4>" +
+                  val.stats.recomendacion__avg +
+                  "</h4><h4>" +
+                  val.stats.profesores__avg +
+                  "</h4><h4>" +
+                  val.stats.exigencia__avg +
+                  "</h4><h4>" +
+                  val.stats.cargaHoraria__avg +
+                  "</h4><h4>" +
+                  val.stats.progIntercambio__avg +
+                  "</h4>"
+              );
+            });
+          },
+          error: function () {},
+        }); //
+      });
+    </script>
+  </body>
 </html>
