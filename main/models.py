@@ -51,8 +51,9 @@ class Especifica(models.Model):
     class Meta:
         ordering = ['carrera']
 
-    def __str__(self):
-        return str(self.carrera)
+    def serialize(self):
+        return {
+            "item": f"{self.carrera} de la {self.universidad}"}
 
 
 class Orientacion (models.Model):

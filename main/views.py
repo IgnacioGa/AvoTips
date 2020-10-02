@@ -26,15 +26,19 @@ def average(objeto):
 
 
 def index(request):
+    espe = list()
     carrera = Carrera.objects.filter().values("titulo")
     universidad = Universidad.objects.filter().values("nombre")
     orientiacion = Orientacion.objects.filter().values("orientacion")
-    especifica = Especifica.objects.filter()
+    especifica = Especifica.objects.all()
+    for x in especifica:
+        dato = x.serialize()
+        espe.append(dato['item'])
     return render(request, "main/index.html", {
         "carreras": carrera,
         "universidades": universidad,
         "orientaciones": orientiacion,
-        "especificas": especifica
+        "especificas": espe
     })
 
 
@@ -112,6 +116,65 @@ def saveReseña(request, titulo):
         else:
             print(encuesta.errors)
             return HttpResponseRedirect(reverse('main:index'))
+
+
+def busqueda(request):
+    if 'term' in request.GET:
+        cs = Carrera.objects.filter(
+            titulo__icontains=request.GET.get('term'))
+        us = Universidad.objects.filter(
+            nombre__icontains=request.GET.get('term'))
+        os = Orientacion.objects.filter(
+            orientacion__icontains=request.GET.get('term'))
+        searchs = list()
+        for value in cs:
+            urlC = 'carrera/' + value.titulo
+            dicc = {
+                'url': urlC,
+                'label': value.titulo,
+                'value': value.titulo
+            }
+            searchs.append(dicc)
+            es = value.especifica.all()
+            for x in es:
+                dato = x.serialize()
+                urlE = "especifica/" + dato['item']
+                dicc = {
+                    'url': urlE,
+                    'label': dato['item'],
+                    'value': dato['item']
+                }
+                searchs.append(dicc)
+
+        for value in us:
+            urlU = 'universidad/' + value.nombre
+            dicc = {
+                'url': urlU,
+                'label': value.nombre,
+                'value': value.nombre
+            }
+            searchs.append(dicc)
+            es = value.carreraEspecifica.all()
+            for x in es:
+                dato = x.serialize()
+                urlE = "especifica/" + dato['item']
+                dicc = {
+                    'url': urlE,
+                    'label': dato['item'],
+                    'value': dato['item']
+                }
+                searchs.append(dicc)
+
+        for value in os:
+            urlO = 'orientacion/' + value.orientacion
+            dicc = {
+                'url': urlO,
+                'label': value.orientacion,
+                'value': value.orientacion
+            }
+            searchs.append(dicc)
+        print(searchs)
+        return JsonResponse(searchs, safe=False)
 
 
 def universidad(request, nombre):
